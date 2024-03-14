@@ -1,1 +1,32 @@
-<p>navigation works!</p>
+<div class="w3-top">
+    <div class="w3-bar w3-theme w3-card" id="myNavbar">
+        <a routerLink="/" class="w3-bar-item w3-button w3-wide">NG RECIPES</a>
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+            <!-- <a routerLink="/about" class="w3-bar-item w3-button">ABOUT</a> -->
+            <a routerLink="/recipes" class="w3-bar-item w3-button"><i class="fa fa-th"></i> RECIPES</a>
+            <a routerLink="/login" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN</a>
+            <a routerLink="/register" class="w3-bar-item w3-button"><i class="fa fa-user"></i> REGISTER</a>
+
+            <a routerLink="/bookmarks" class="w3-bar-item w3-button"><i class="fa fa-bookmark"></i> BOOKMARKS</a>
+            <a routerLink="/recipes/add" class="w3-bar-item w3-button"><i class="fa fa-cutlery"></i> ADD RECIPE</a>
+
+            <a routerLink="/logout" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> LOGOUT</a>
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+        <a (click)="w3_open()" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</div>
+
+<nav class="w3-sidebar w3-bar-block w3-theme w3-card w3-animate-left w3-hide-medium w3-hide-large"
+    [style.display]="isSidebarShowed ? 'block' : 'none'" id="mySidebar">
+    <a (click)="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+    <a (click)="w3_close()" routerLink="/about" class="w3-bar-item w3-button">ABOUT</a>
+    <a (click)="w3_close()" routerLink="/team" class="w3-bar-item w3-button">TEAM</a>
+    <a (click)="w3_close()" routerLink="/work" class="w3-bar-item w3-button">WORK</a>
+    <a (click)="w3_close()" routerLink="/pricing" class="w3-bar-item w3-button">PRICING</a>
+    <a (click)="w3_close()" routerLink="/contact" class="w3-bar-item w3-button">CONTACT</a>
+</nav>

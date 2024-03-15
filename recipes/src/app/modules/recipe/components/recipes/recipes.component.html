@@ -9,7 +9,7 @@
                 <div class="w3-container">
                     <h3>{{recipe.title}}</h3>
                     <p>
-                        <button routerLink="/recipes/{{recipe.objectId}}" class="w3-button w3-light-grey w3-block">View Recipe</button>
+                        <button [routerLink]="recipe.objectId" class="w3-button w3-light-grey w3-block">View Recipe</button>
                     </p>
                 </div>
             </div>

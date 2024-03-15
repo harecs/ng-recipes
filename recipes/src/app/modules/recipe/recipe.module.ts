@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeService } from '../recipe.service';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 
 
@@ -12,10 +13,12 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     RecipeDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
-    RecipesComponent
+    RecipesComponent,
+    RecipeDetailsComponent
   ]
 })
 export class RecipeModule { }

@@ -10,7 +10,7 @@
             <h3>Serves: {{recipe?.serves}}</h3>
             <!-- <h3>Ingredients: {{recipe?.ingredients}}</h3> -->
 
-            <table class="w3-table-all w3-hoverable w3-large">
+            <table class="w3-table-all w3-hoverable">
                 <tr class="w3-theme-d3">
                     <th>Ingredients</th>
                 </tr>
@@ -20,7 +20,9 @@
             </table>
 
             <h2>Method</h2>
-            <p>{{recipe?.method}}</p>
+            <ng-container *ngFor="let step of steps">
+                <p>{{step}}</p>
+            </ng-container>
         </div>
 
     </div>

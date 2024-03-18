@@ -12,6 +12,7 @@ import { Recipe } from 'src/app/types/recipe';
 export class RecipeDetailsComponent implements OnInit {
   private recipe$: Observable<Recipe> | undefined;
   recipe: Recipe | undefined;
+  ingredients: string[] = [];
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
   
@@ -21,7 +22,7 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipe$ = this.recipeService.getRecipe(id);
     this.recipe$.subscribe(data => {
       console.log(data);
-      console.log(data.ingredients.split('\n'));
+      this.ingredients = data.ingredients.split('\n');
       
       
       this.recipe = data;

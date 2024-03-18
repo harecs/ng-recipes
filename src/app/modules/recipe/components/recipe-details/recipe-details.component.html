@@ -8,7 +8,16 @@
         <div>
             <h2>Recipe information</h2>
             <h3>Serves: {{recipe?.serves}}</h3>
-            <h3>Ingredients: {{recipe?.ingredients}}</h3>
+            <!-- <h3>Ingredients: {{recipe?.ingredients}}</h3> -->
+
+            <table class="w3-table-all w3-hoverable w3-large">
+                <tr class="w3-theme-d3">
+                    <th>Ingredients</th>
+                </tr>
+                <tr *ngFor="let ingredient of ingredients">
+                    <td>{{ingredient}}</td>
+                </tr>
+            </table>
 
             <h2>Method</h2>
             <p>{{recipe?.method}}</p>

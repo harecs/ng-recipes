@@ -4,17 +4,22 @@
             <h2>Register</h2>
         </div>
 
-        <form class="w3-container w3-card-4 w3-center">
+        <form #form="ngForm" (ngSubmit)="register(form)" class="w3-container w3-card-4 w3-center">
             <p>
-                <input class="w3-input w3-center" type="text" required>
+                <input class="w3-input w3-center" name="username" type="text" required ngModel #inputUsername="ngModel">
                 <label>Username</label>
+                <ng-container *ngIf="inputUsername.touched">
+                    <label *ngIf="inputUsername.errors?.['required']" class="w3-text-red">The username is required</label>
+                </ng-container>
             </p>
             <p>
-                <input class="w3-input w3-center" type="password" required>
+                <input class="w3-input w3-center" name="password" type="password" required ngModel
+                    #inputPassword="ngModel">
                 <label>Password</label>
             </p>
             <p>
-                <input class="w3-input w3-center" type="password" required>
+                <input class="w3-input w3-center" name="rePassword" type="password" required ngModel
+                    #inputRePassword="ngModel">
                 <label>Repeat Password</label>
             </p>
 

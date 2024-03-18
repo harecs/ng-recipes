@@ -9,6 +9,8 @@ import { RecipeModule } from './modules/recipe/recipe.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeService } from './modules/recipe/recipe.service';
 import { UserRoutingModule } from './modules/user/user-routing.module';
+import { FormsModule } from '@angular/forms';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { UserRoutingModule } from './modules/user/user-routing.module';
     CoreModule,
     HttpClientModule,
     HomeModule,
+    UserModule,
     RecipeModule,
     UserRoutingModule,
     AppRoutingModule

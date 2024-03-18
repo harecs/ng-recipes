@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { RecipesResults } from '../types/recipeResults';
-import { Recipe } from '../types/recipe';
+import { RecipesResults } from '../../types/recipeResults';
+import { Recipe } from '../../types/recipe';
 
 @Injectable({
   providedIn: 'root'

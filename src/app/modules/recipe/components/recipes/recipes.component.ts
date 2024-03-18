@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { RecipeService } from 'src/app/modules/recipe.service';
+import { RecipeService } from 'src/app/modules/recipe/recipe.service';
 import { Recipe } from 'src/app/types/recipe';
 import { RecipesResults } from 'src/app/types/recipeResults';
 

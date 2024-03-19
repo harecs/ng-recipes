@@ -6,14 +6,14 @@
 
         <form #form="ngForm" (ngSubmit)="register(form)" class="w3-container w3-card-4 w3-center">
             <p>
-                <input class="w3-input w3-center" name="email" type="text" placeholder="Enter email" required email
+                <input class="w3-input w3-center" name="email" type="text" placeholder="Enter email" required appEmail=""
                     ngModel #inputEmail="ngModel">
                 <label>Email</label>
                 <ng-container *ngIf="inputEmail.touched">
                     <div class="w3-pale-red w3-round">
                         <label *ngIf="inputEmail.errors?.['required']" class="ng-text-red">Email is
                             required</label>
-                        <label *ngIf="inputEmail.errors?.['email']" class="ng-text-red">Invalid email format</label>
+                        <label *ngIf="inputEmail.errors?.['appEmail']" class="ng-text-red">Invalid email format</label>
                     </div>
                 </ng-container>
             </p>

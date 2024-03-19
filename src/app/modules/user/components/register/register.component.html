@@ -32,13 +32,13 @@
             </p>
             <p>
                 <input class="w3-input w3-center" name="password" type="password" placeholder="Enter password"
-                    minlength="8" required ngModel #inputPassword="ngModel">
+                    required minlength="8" ngModel #inputPassword="ngModel">
                 <label>Password</label>
                 <ng-container *ngIf="inputPassword.touched">
                     <div class="w3-pale-red w3-round">
                         <label *ngIf="inputPassword.errors?.['required']" class="ng-text-red">Password is
                             required</label>
-                        <label *ngIf="inputUsername.errors?.['minlength']" class="ng-text-red">The password should be at
+                        <label *ngIf="inputPassword.errors?.['minlength']" class="ng-text-red">The password should be at
                             least 8 characters
                             long</label>
                     </div>

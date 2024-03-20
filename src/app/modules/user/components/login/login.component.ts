@@ -10,17 +10,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   constructor(private userService: UserService, private router: Router) { }
-  
+
   login(form: NgForm): void {
     if (form.invalid) {
       return;
     }
 
     this.userService.loginUser(form.value.username, form.value.password)
-      .subscribe((data) => {
-        console.log(data);
-        this.router.navigate(['/recipes']);
-      })
+      .subscribe((data) => this.router.navigate(['/recipes']))
   }
-
 }

@@ -12,6 +12,7 @@ import { UserRoutingModule } from './modules/user/user-routing.module';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from './modules/user/user.module';
 import { EmailDirective } from './shared/validators/email.directive';
+import { appHttpInterceptorProvider } from './app-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EmailDirective } from './shared/validators/email.directive';
   ],
   providers: [
     RecipeService,
+    appHttpInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

@@ -10,23 +10,16 @@ import { Recipe } from '../../types/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiUrl: string = environment.RECIPE_CLASS_URL;
-  private appId: string = environment.APPLICATION_ID;
-  private apiKey: string = environment.REST_API_KEY;
-  private options: object = {
-    'headers': {
-      'X-Parse-Application-Id': this.appId,
-      'X-Parse-REST-API-Key': this.apiKey,
-    }
-  };
 
   constructor(private http: HttpClient) { }
 
   getAllRecipes(): Observable<RecipesResults> {
-    return this.http.get<RecipesResults>(this.apiUrl, this.options);
+    // return this.http.get<RecipesResults>(this.apiUrl, this.options);
+    return this.http.get<RecipesResults>('/api/classes/Recipe');
   }
 
   getRecipe(id: string): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/${id}`, this.options);
+    // return this.http.get<Recipe>(`${this.apiUrl}/${id}`, this.options);
+    return this.http.get<Recipe>(`/api/classes/Recipe/${id}`);
   }
 }

@@ -6,8 +6,8 @@
 
         <form #form="ngForm" (ngSubmit)="register(form)" class="w3-container w3-card-4 w3-center">
             <p>
-                <input class="w3-input w3-center" name="email" type="text" placeholder="Enter email" required appEmail=""
-                    ngModel #inputEmail="ngModel">
+                <input class="w3-input w3-center" name="email" type="text" placeholder="Enter email" required
+                    appEmail="" ngModel #inputEmail="ngModel">
                 <label>Email</label>
                 <ng-container *ngIf="inputEmail.touched">
                     <div class="w3-pale-red w3-round">
@@ -30,34 +30,42 @@
                     </div>
                 </ng-container>
             </p>
+
+
             <p>
-                <input class="w3-input w3-center" name="password" type="password" placeholder="Enter password"
-                    required minlength="8" ngModel #inputPassword="ngModel">
+                <input class="w3-input w3-center" name="password" type="password" placeholder="Enter password" required
+                    minlength="8" ngModel #inputPassword="ngModel">
                 <label>Password</label>
                 <ng-container *ngIf="inputPassword.touched">
                     <div class="w3-pale-red w3-round">
                         <label *ngIf="inputPassword.errors?.['required']" class="ng-text-red">Password is
                             required</label>
-                        <label *ngIf="inputPassword.errors?.['minlength']" class="ng-text-red">The password should be at
+                        <label *ngIf="inputPassword.errors?.['minlength']" class="ng-text-red">The password should
+                            be at
                             least 8 characters
                             long</label>
                     </div>
                 </ng-container>
             </p>
-            <p>
+            <!-- <p>
                 <input class="w3-input w3-center" name="rePassword" type="password"
-                    placeholder="Enter repeated password" required ngModel #inputRePassword="ngModel">
+                    placeholder="Enter repeated password" required appRepeatedPassword ngModel
+                    #inputRePassword="ngModel">
                 <label>Repeat Password</label>
                 <ng-container *ngIf="inputRePassword.touched">
                     <div class="w3-pale-red w3-round">
                         <label *ngIf="inputRePassword.errors?.['required']" class="ng-text-red">Repeat password is
                             required</label>
+                        <label *ngIf="inputRePassword.errors?.['appRepeatedPassword']" class="ng-text-red">Passwords
+                            don't
+                            match</label>
                     </div>
                 </ng-container>
-            </p>
+            </p> -->
 
             <p>
-                <button class="w3-button w3-section w3-theme w3-ripple w3-hover-theme-dark">Register</button>
+                <button [disabled]="form.invalid"
+                    class="w3-button w3-section w3-theme w3-ripple w3-hover-theme-dark">Register</button>
             </p>
         </form>
     </div>

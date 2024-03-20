@@ -1,25 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/types/user';
+import { Observable, Subject } from 'rxjs';
+import { loggedUser } from 'src/app/types/loggedUser';
+import { registeredUser } from 'src/app/types/registeredUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private user$$: Subject<loggedUser> | undefined;
+
+
 
   constructor(private http: HttpClient) { }
 
-  registerUser(email: string, username: string, password: string): Observable<User> {
-    const registerData = JSON.stringify({ email, username, password });
+  registerUser(email: string, username: string, password: string): Observable<registeredUser> {
+    const registerData: string = JSON.stringify({ email, username, password });
 
-    return this.http.post<User>('/api/users', registerData, {
+    return this.http.post<registeredUser>('/api/users', registerData, {
       headers: {
         'Content-Type': 'application/json',
         'X-Parse-Revocable-Session': '1'
       },
       withCredentials: true
+    });
+  }
+
+  loginUser(username: string, password: string): Observable<loggedUser> {
+    const loginData: string = JSON.stringify({ username, password });
+
+    return this.http.get<loggedUser>(`/api/login?username=${username}&password=${password}`, {
+      headers: {
+        'X-Parse-Revocable-Session': '1'
+      }, // maybe withCredentials: true ???
     });
   }
 }

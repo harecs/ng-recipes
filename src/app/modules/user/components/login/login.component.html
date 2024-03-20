@@ -1,0 +1,45 @@
+<div class="center">
+    <div class="w3-container w3-third w3-margin-top w3-padding-64">
+        <div class="w3-container w3-theme-dark w3-center">
+            <h2>Login</h2>
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="login(form)" class="w3-container w3-card-4 w3-center">
+            <p>
+                <input class="w3-input w3-center" name="username" type="text" placeholder="Enter username" required
+                    minlength="4" ngModel #inputUsername="ngModel">
+                <label>Username</label>
+                <ng-container *ngIf="inputUsername.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputUsername.errors?.['required']" class="ng-text-red">Username is
+                            required</label>
+                        <label *ngIf="inputUsername.errors?.['minlength']" class="ng-text-red">The username should be at
+                            least 4 characters long</label>
+                    </div>
+                </ng-container>
+            </p>
+
+
+            <p>
+                <input class="w3-input w3-center" name="password" type="password" placeholder="Enter password" required
+                    minlength="8" ngModel #inputPassword="ngModel">
+                <label>Password</label>
+                <ng-container *ngIf="inputPassword.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputPassword.errors?.['required']" class="ng-text-red">Password is
+                            required</label>
+                        <label *ngIf="inputPassword.errors?.['minlength']" class="ng-text-red">The password should
+                            be at
+                            least 8 characters
+                            long</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <button [disabled]="form.invalid"
+                    class="w3-button w3-section w3-theme w3-ripple w3-hover-theme-dark">Login</button>
+            </p>
+        </form>
+    </div>
+</div>

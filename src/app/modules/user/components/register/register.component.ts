@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   constructor(private userService: UserService, private router: Router) { }
 
-  register(form: NgForm) {
+  register(form: NgForm): void {
     if (form.invalid) {
       return;
     }

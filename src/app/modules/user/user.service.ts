@@ -1,18 +1,28 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { loggedUser } from 'src/app/types/loggedUser';
 import { registeredUser } from 'src/app/types/registeredUser';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnDestroy{
   private user$$ = new BehaviorSubject<loggedUser | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
-  constructor(private http: HttpClient) { }
+  user: loggedUser | undefined;
+
+  get isLogged(): boolean {
+    return !!this.user;
+  }
+
+  subscription: Subscription;
+
+  constructor(private http: HttpClient) {
+    this.subscription = this.user$.subscribe((user) => this.user = user);
+  }
 
   registerUser(email: string, username: string, password: string): Observable<registeredUser> {
     const registerData: string = JSON.stringify({ email, username, password });
@@ -28,16 +38,37 @@ export class UserService {
   }
 
   loginUser(username: string, password: string): Observable<loggedUser> {
+    const url = `/api/login?username=${username}&password=${password}`;
+    const options = {
+      headers: {
+        'X-Parse-Revocable-Session': '1'
+      }, // maybe withCredentials: true ???
+    };
+
     return this.http
-      .get<loggedUser>(`/api/login?username=${username}&password=${password}`, {
-        headers: {
-          'X-Parse-Revocable-Session': '1'
-        }, // maybe withCredentials: true ???
-      })
+      .get<loggedUser>(url, options)
       .pipe(tap((user) => this.user$$?.next(user)));
   }
 
-  logoutUser(): void {
-    this.user$.subscribe(console.log);
+  logoutUser(): Observable<object> {
+    const url = `/api/logout`;
+    
+    let sessionToken: string | undefined;
+    this.user$.subscribe((user) => sessionToken = user?.sessionToken) ;
+
+    const options = {
+      headers: {
+        'X-Parse-Session-Token': sessionToken //.subscribe((user) => user?.sessionToken)
+      }
+    }    
+
+    return this.http
+      .post<object>(url, options)
+      .pipe(tap(() => this.user$$.next(undefined)))
+  }
+
+  ngOnDestroy(): void {
+    // this.user$$.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

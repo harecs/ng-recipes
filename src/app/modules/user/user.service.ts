@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/types/user';
 
@@ -9,9 +10,11 @@ import { User } from 'src/app/types/user';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  
-  register(formValue: string): Observable<User> {
-    return this.http.post<User>('/api/users', formValue, {
+
+  registerUser(email: string, username: string, password: string): Observable<User> {
+    const registerData = JSON.stringify({ email, username, password });
+
+    return this.http.post<User>('/api/users', registerData, {
       headers: {
         'Content-Type': 'application/json',
         'X-Parse-Revocable-Session': '1'

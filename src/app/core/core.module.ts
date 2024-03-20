@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 @NgModule({
   declarations: [
-    NavigationComponent
+    NavigationComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     NavigationComponent,
+    NotFoundComponent
   ]
 })
 export class CoreModule { }

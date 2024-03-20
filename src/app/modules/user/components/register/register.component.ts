@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-register',
@@ -7,11 +8,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  register(form: NgForm) {
-   if (form.invalid) {
-    return;
-   }
+  constructor(private userService: UserService) { }
 
-    console.log(form.value);
+  register(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this.userService.register(JSON.stringify(form.value)).subscribe(console.log);
   }
 }

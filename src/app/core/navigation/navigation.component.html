@@ -4,14 +4,28 @@
         <!-- Right-sided navbar links -->
         <div class="w3-right w3-hide-small">
             <!-- <a routerLink="/about" class="w3-bar-item w3-button">ABOUT</a> -->
-            <a routerLink="/recipes" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-th"></i> RECIPES</a>
-            <a routerLink="/login" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-in"></i> LOGIN</a>
-            <a routerLink="/register" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-user"></i> REGISTER</a>
 
-            <a routerLink="/bookmarks" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-bookmark"></i> BOOKMARKS</a>
-            <a routerLink="/recipes/add" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-cutlery"></i> ADD RECIPE</a>
+            <a routerLink="/recipes" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-th"></i>
+                RECIPES</a>
 
-            <a routerLink="/logout" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-out"></i> LOGOUT</a>
+            <ng-container *ngIf="!isLogged">
+                <a routerLink="/login" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-in"></i>
+                    LOGIN</a>
+                <a routerLink="/register" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-user"></i>
+                    REGISTER</a>
+            </ng-container>
+
+            <ng-container *ngIf="isLogged">
+                <a routerLink="/bookmarks" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-bookmark"></i>
+                    BOOKMARKS</a>
+                <a routerLink="/recipes/add" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-cutlery"></i> ADD
+                    RECIPE</a>
+                <a routerLink="/logout" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-out"></i>
+                    LOGOUT</a>
+            </ng-container>
+
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 

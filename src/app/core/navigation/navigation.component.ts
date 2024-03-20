@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/modules/user/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
   isSidebarShowed: boolean = false;
+
+  get isLogged(): boolean {
+    return this.userService.isLogged;
+  }
+
+  constructor(private userService: UserService) {}
 
   w3_open(): void {
     this.isSidebarShowed = !this.isSidebarShowed;

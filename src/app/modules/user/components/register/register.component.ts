@@ -21,7 +21,10 @@ export class RegisterComponent {
     this.userService.registerUser(email, username, password)
       .subscribe(() => { 
         this.userService.loginUser(username, password)
-          .subscribe(() => this.router.navigate(['/bookmarks']));        
+          .subscribe((userData) => {
+            localStorage.setItem('token', userData.sessionToken)
+            this.router.navigate(['/recipes'])
+          });        
       });
   }
 }

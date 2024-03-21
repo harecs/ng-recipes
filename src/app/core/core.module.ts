@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 
 
@@ -10,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     NavigationComponent,
     NotFoundComponent,
+    AuthenticateComponent,
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   exports: [
     NavigationComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthenticateComponent
   ]
 })
 export class CoreModule { }

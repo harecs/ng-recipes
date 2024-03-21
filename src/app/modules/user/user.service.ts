@@ -8,11 +8,11 @@ import { registeredUser } from 'src/app/types/registeredUser';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnDestroy{
+export class UserService implements OnDestroy {
   private user$$ = new BehaviorSubject<loggedUser | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
-  user: loggedUser | undefined;
+  private user: loggedUser | undefined;
 
   get isLogged(): boolean {
     return !!this.user;
@@ -25,20 +25,23 @@ export class UserService implements OnDestroy{
   }
 
   registerUser(email: string, username: string, password: string): Observable<registeredUser> {
+    const url: string = '/api/users';
     const registerData: string = JSON.stringify({ email, username, password });
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Parse-Revocable-Session': '1'
+      },
+      withCredentials: true
+    }
+
 
     return this.http
-      .post<registeredUser>('/api/users', registerData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Parse-Revocable-Session': '1'
-        },
-        withCredentials: true
-      });
+      .post<registeredUser>(url, registerData);
   }
 
   loginUser(username: string, password: string): Observable<loggedUser> {
-    const url = `/api/login?username=${username}&password=${password}`;
+    const url: string = `/api/login?username=${username}&password=${password}`;
     const options = {
       headers: {
         'X-Parse-Revocable-Session': '1'
@@ -47,24 +50,41 @@ export class UserService implements OnDestroy{
 
     return this.http
       .get<loggedUser>(url, options)
-      .pipe(tap((user) => this.user$$?.next(user)));
+      .pipe(tap((user) => this.user$$?.next(user)))
+      .pipe(tap((userData) => localStorage.setItem('token', userData.sessionToken)));
   }
 
   logoutUser(): Observable<object> {
-    const url = `/api/logout`;
-    
+    const url: string = `/api/logout`;
+
     let sessionToken: string | undefined;
-    this.user$.subscribe((user) => sessionToken = user?.sessionToken) ;
+    this.user$.subscribe((user) => sessionToken = user?.sessionToken);
 
     const options = {
       headers: {
         'X-Parse-Session-Token': sessionToken //.subscribe((user) => user?.sessionToken)
       }
-    }    
+    }
 
     return this.http
       .post<object>(url, options)
       .pipe(tap(() => this.user$$.next(undefined)))
+      .pipe(tap(() => localStorage.removeItem('token')))
+  }
+
+  getUser(token: string) {
+    const url: string = '/api/users/me';
+    // const token: string = localStorage.getItem('token') || '';
+
+    const options = {
+      headers: {
+        'X-Parse-Session-Token': token  //.subscribe((user) => user?.sessionToken)
+      }
+    }
+
+    return this.http
+      .get<loggedUser>(url, options)
+      .pipe(tap((user) => this.user$$?.next(user)));
   }
 
   ngOnDestroy(): void {

@@ -4,6 +4,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,6 +16,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule
   ],
   exports: [

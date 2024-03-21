@@ -4,6 +4,7 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeService } from './recipe.service';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -14,6 +15,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule
   ],
   exports: [

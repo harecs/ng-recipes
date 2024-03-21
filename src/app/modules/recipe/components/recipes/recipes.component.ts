@@ -12,7 +12,7 @@ import { RecipesResults } from 'src/app/types/recipeResults';
 })
 export class RecipesComponent implements OnInit {
   private recipesResults$: Observable<RecipesResults> = this.recipeService.getAllRecipes();
-  recipes: Recipe[] = [];
+  recipes: Recipe[] | undefined;
 
   constructor(private recipeService: RecipeService) { }
 

@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { UserRoutingModule } from './user-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule
+  ],
+  exports: [
+    UserRoutingModule
   ]
 })
 export class UserModule { }

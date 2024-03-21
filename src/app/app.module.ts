@@ -9,9 +9,6 @@ import { RecipeModule } from './modules/recipe/recipe.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeService } from './modules/recipe/recipe.service';
 import { UserRoutingModule } from './modules/user/user-routing.module';
-import { FormsModule } from '@angular/forms';
-import { UserModule } from './modules/user/user.module';
-import { EmailDirective } from './shared/validators/email.directive';
 import { appHttpInterceptorProvider } from './app-http.interceptor';
 
 @NgModule({
@@ -23,13 +20,12 @@ import { appHttpInterceptorProvider } from './app-http.interceptor';
     CoreModule,
     HttpClientModule,
     HomeModule,
-    UserModule,
     RecipeModule,
     UserRoutingModule,
     AppRoutingModule
   ],
   providers: [
-    RecipeService,
+    // RecipeService,
     appHttpInterceptorProvider
   ],
   bootstrap: [AppComponent]

@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RecipesResults } from '../../types/recipeResults';
 import { Recipe } from '../../types/recipe';
+import { UserService } from '../user/user.service';
+import { recipeForCreation } from 'src/app/types/recipeForCreation';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getAllRecipes(): Observable<RecipesResults> {
     // return this.http.get<RecipesResults>(this.apiUrl, this.options);
@@ -21,5 +23,17 @@ export class RecipeService {
   getRecipe(id: string): Observable<Recipe> {
     // return this.http.get<Recipe>(`${this.apiUrl}/${id}`, this.options);
     return this.http.get<Recipe>(`/api/classes/Recipe/${id}`);
+  }
+
+  addRecipe(recipeInfo: recipeForCreation): Observable<Recipe> {
+    const url: string = '/api/classes/Recipe';
+    const recipeJSON: string = JSON.stringify(recipeInfo);
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    return this.http.post<Recipe>(url, recipeJSON, options);
   }
 }

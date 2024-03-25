@@ -10,7 +10,7 @@ export class NavigationComponent {
   isSidebarShowed: boolean = false;
 
   get isLogged(): boolean {
-    return this.userService.isLogged;
+    return this.userService.isLogged();
   }
 
   constructor(private userService: UserService) {}

@@ -5,6 +5,7 @@ import { RecipeService } from './recipe.service';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RecipeRoutingModule } from './recipe-routing.module';
 
 
 
@@ -19,8 +20,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     RouterModule
   ],
   exports: [
-    RecipesComponent,
-    RecipeDetailsComponent
+    RecipeRoutingModule
   ]
 })
 export class RecipeModule { }

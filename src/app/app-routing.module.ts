@@ -12,13 +12,6 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'recipes',
-    children: [
-      { path: '', pathMatch: 'full', component: RecipesComponent },
-      { path: ':id', component: RecipeDetailsComponent }
-    ]
-  },
-  {
     path: 'auth',
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
@@ -33,3 +26,13 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+
+// {
+//   path: 'recipes',
+//   children: [
+//     { path: '', pathMatch: 'full', component: RecipesComponent },
+//     { path: ':id', component: RecipeDetailsComponent }
+//   ]
+// },

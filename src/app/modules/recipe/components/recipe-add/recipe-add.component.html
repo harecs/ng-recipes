@@ -1,0 +1,81 @@
+<div class="center">
+    <div class="w3-container w3-third w3-margin-top w3-padding-64">
+        <div class="w3-container w3-theme-dark w3-center">
+            <h2>Add Recipe</h2>
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="addRecipe(form)" class="w3-container w3-card-4 w3-center">
+            <p>
+                <input class="w3-input w3-center" name="title" type="text" placeholder="Enter title" required
+                    minlength="5" ngModel #inputTitle="ngModel">
+                <label>Email</label>
+                <ng-container *ngIf="inputTitle.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputTitle.errors?.['required']" class="ng-text-red">Title is
+                            required</label>
+                        <label *ngIf="inputTitle.errors?.['minlength']" class="ng-text-red">The title should be at
+                            least 5 characters long</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <textarea class="w3-input w3-center" name="ingredients" placeholder="Enter ingredients" required
+                    minlength="10" ngModel #inputIngredients="ngModel"></textarea>
+                <label>Ingredients</label>
+                <ng-container *ngIf="inputIngredients.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputIngredients.errors?.['required']" class="ng-text-red">Ingredients are
+                            required</label>
+                        <label *ngIf="inputIngredients.errors?.['minlength']" class="ng-text-red">The ingredients should
+                            be at
+                            least 10 characters long</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <input class="w3-input w3-center" name="serves" type="number" placeholder="Enter serves count" min="1"
+                    ngModel #inputServes="ngModel">
+                <label>Serves</label>
+                <ng-container *ngIf="inputServes.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputServes.errors?.['min']" class="ng-text-red">The serves number should
+                            be a positive number</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <textarea class="w3-input w3-center" name="method" placeholder="Enter method to cook" required
+                    minlength="10" ngModel #inputMethod="ngModel"></textarea>
+                <label>Method</label>
+                <ng-container *ngIf="inputMethod.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputMethod.errors?.['required']" class="ng-text-red">Method is
+                            required</label>
+                        <label *ngIf="inputMethod.errors?.['minlength']" class="ng-text-red">The method should
+                            be at
+                            least 10 characters long</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <input class="w3-input w3-center" name="imageUrl" type="text" placeholder="Enter Image URL"
+                    pattern="https?:\/\/.*" ngModel #inputImageUrl="ngModel">
+                <label>Image URL</label>
+                <ng-container *ngIf="inputImageUrl.touched">
+                    <div class="w3-pale-red w3-round">
+                        <label *ngIf="inputImageUrl.errors?.['pattern']" class="ng-text-red">Image should start with "http://" or "https://"</label>
+                    </div>
+                </ng-container>
+            </p>
+
+            <p>
+                <button [disabled]="form.invalid"
+                    class="w3-button w3-section w3-theme w3-ripple w3-hover-theme-dark">Add Recipe</button>
+            </p>
+        </form>
+    </div>
+</div>

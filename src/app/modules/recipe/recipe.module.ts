@@ -6,17 +6,21 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RecipeRoutingModule } from './recipe-routing.module';
+import { RecipeAddComponent } from './components/recipe-add/recipe-add.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     RecipesComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    RecipeAddComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
     RouterModule
   ],
   exports: [

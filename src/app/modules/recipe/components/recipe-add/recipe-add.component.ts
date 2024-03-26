@@ -21,7 +21,7 @@ export class RecipeAddComponent {
 
     this.recipeService.addRecipe(recipeInfo)
       .subscribe(recipe => {
-        this.router.navigate([`/recipe/${recipe.objectId}`]);
+        this.router.navigate([`/recipes/${recipe.objectId}`]);
       });
   }
 }

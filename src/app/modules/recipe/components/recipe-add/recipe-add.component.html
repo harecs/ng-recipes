@@ -8,7 +8,7 @@
             <p>
                 <input class="w3-input w3-center" name="title" type="text" placeholder="Enter title" required
                     minlength="5" ngModel #inputTitle="ngModel">
-                <label>Email</label>
+                <label>Title</label>
                 <ng-container *ngIf="inputTitle.touched">
                     <div class="w3-pale-red w3-round">
                         <label *ngIf="inputTitle.errors?.['required']" class="ng-text-red">Title is

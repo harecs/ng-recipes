@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeAddComponent } from './components/recipe-add/recipe-add.component';
 import { FormsModule } from '@angular/forms';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     RecipesComponent,
     RecipeDetailsComponent,
-    RecipeAddComponent
+    RecipeAddComponent,
+    RecipeEditComponent
   ],
   imports: [
     CommonModule,

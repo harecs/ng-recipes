@@ -5,6 +5,7 @@ import { LoaderComponent } from 'src/app/shared/components/loader/loader.compone
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipeAddComponent } from './components/recipe-add/recipe-add.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', component: RecipesComponent },
             { path: 'add', component: RecipeAddComponent, canActivate: [AuthActivate] },
+            { path: ':id/edit', component: RecipeEditComponent },
             { path: ':id', component: RecipeDetailsComponent }
         ]
     }

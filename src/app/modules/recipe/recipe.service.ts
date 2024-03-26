@@ -51,4 +51,18 @@ export class RecipeService {
 
     return this.http.post<Recipe>(url, recipeJSON, options);
   }
+
+  editRecipe(id:string, recipeInfo: RecipeForCreation): Observable<Recipe> {
+    const url: string = `/api/classes/Recipe/${id}`;
+
+    const recipeJSON: string = JSON.stringify(recipeInfo);
+
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    return this.http.put<Recipe>(url, recipeJSON, options);
+  }
 }

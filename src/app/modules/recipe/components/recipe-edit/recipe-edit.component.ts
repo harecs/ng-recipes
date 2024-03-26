@@ -24,6 +24,9 @@ export class RecipeEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
+    console.log(this.id);
+    
+
     this.recipe$ = this.recipeService.getRecipe(this.id);
     this.recipe$.subscribe(data => {
       this.recipe = data;

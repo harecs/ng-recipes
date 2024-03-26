@@ -28,21 +28,35 @@ export class RecipeService {
   addRecipe(recipeInfo: RecipeForCreation): Observable<Recipe> {
     const url: string = '/api/classes/Recipe';
 
-    const recipeWithACL = {
-      ...recipeInfo,
-      ACL: {
-        "3KmCvT7Zsb": {
+    const aclEntries = [
+      [
+        recipeInfo.ownerId,
+        {
           "read": true,
           "write": true
-        },
-        "*": {
+        }
+      ],
+      [
+        "*",
+        {
           "read": true
         }
-      }
-    };
+      ]
+    ]
+
+    console.log();
+
+
+    const recipeWithACL = {
+      ...recipeInfo,
+      ACL: Object.fromEntries(aclEntries)
+    }
+
+
+    // Object.defineProperty(recipeWithACL)
 
     const recipeJSON: string = JSON.stringify(recipeWithACL);
-    
+
     const options = {
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +66,7 @@ export class RecipeService {
     return this.http.post<Recipe>(url, recipeJSON, options);
   }
 
-  editRecipe(id:string, recipeInfo: RecipeForCreation): Observable<Recipe> {
+  editRecipe(id: string, recipeInfo: RecipeForCreation): Observable<Recipe> {
     const url: string = `/api/classes/Recipe/${id}`;
 
     const recipeJSON: string = JSON.stringify(recipeInfo);

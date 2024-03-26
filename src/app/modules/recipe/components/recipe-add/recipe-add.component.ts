@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/modules/user/user.service';
-import { recipeForCreation } from 'src/app/types/recipeForCreation';
+import { RecipeForCreation } from 'src/app/types/recipeForCreation';
 import { RecipeService } from '../../recipe.service';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class RecipeAddComponent {
 
   addRecipe(form: NgForm) {
     const ownerId: string = this.userService.user?.objectId || '';
-    const recipeInfo: recipeForCreation = { ...form.value, ownerId };
+    const recipeInfo: RecipeForCreation = { ...form.value, ownerId };
 
     this.recipeService.addRecipe(recipeInfo)
       .subscribe(recipe => {

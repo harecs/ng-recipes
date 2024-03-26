@@ -1,4 +1,4 @@
-export interface loggedUser {
+export interface LoggedUser {
     "objectId": string;
     "username": string;
     "createdAt": string;

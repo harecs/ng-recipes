@@ -1,4 +1,4 @@
-export interface registeredUser {
+export interface RegisteredUser {
     "objectId": string;
     "createdAt": string;
     "sessionToken": string;

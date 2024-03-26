@@ -2,19 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
-import { loggedUser } from 'src/app/types/loggedUser';
-import { registeredUser } from 'src/app/types/registeredUser';
+import { LoggedUser } from 'src/app/types/loggedUser';
+import { RegisteredUser } from 'src/app/types/registeredUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements OnDestroy {
-  private user$$ = new BehaviorSubject<loggedUser | undefined>(undefined);
+  private user$$ = new BehaviorSubject<LoggedUser | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
-  user: loggedUser | undefined;
+  user: LoggedUser | undefined;
 
-  isLogged(): boolean {    
+  isLogged(): boolean {
     return !!this.user
   }
 
@@ -24,7 +24,7 @@ export class UserService implements OnDestroy {
     this.subscription = this.user$.subscribe((user) => this.user = user);
   }
 
-  registerUser(email: string, username: string, password: string): Observable<registeredUser> {
+  registerUser(email: string, username: string, password: string): Observable<RegisteredUser> {
     const url: string = '/api/users';
     const registerData: string = JSON.stringify({ email, username, password });
     const options = {
@@ -37,10 +37,10 @@ export class UserService implements OnDestroy {
 
 
     return this.http
-      .post<registeredUser>(url, registerData);
+      .post<RegisteredUser>(url, registerData);
   }
 
-  loginUser(username: string, password: string): Observable<loggedUser> {
+  loginUser(username: string, password: string): Observable<LoggedUser> {
     const url: string = `/api/login?username=${username}&password=${password}`;
     const options = {
       headers: {
@@ -49,7 +49,7 @@ export class UserService implements OnDestroy {
     };
 
     return this.http
-      .get<loggedUser>(url, options)
+      .get<LoggedUser>(url, options)
       .pipe(tap((user) => this.user$$?.next(user)))
       .pipe(tap((userData) => localStorage.setItem('token', userData.sessionToken)));
   }
@@ -83,7 +83,7 @@ export class UserService implements OnDestroy {
     }
 
     return this.http
-      .get<loggedUser>(url, options)
+      .get<LoggedUser>(url, options)
       .pipe(tap((user) => this.user$$?.next(user)));
   }
 

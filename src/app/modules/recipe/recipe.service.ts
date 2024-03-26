@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { RecipesResults } from '../../types/recipeResults';
 import { Recipe } from '../../types/recipe';
 import { UserService } from '../user/user.service';
-import { recipeForCreation } from 'src/app/types/recipeForCreation';
+import { RecipeForCreation } from 'src/app/types/recipeForCreation';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,23 @@ export class RecipeService {
     return this.http.get<Recipe>(`/api/classes/Recipe/${id}`);
   }
 
-  addRecipe(recipeInfo: recipeForCreation): Observable<Recipe> {
+  addRecipe(recipeInfo: RecipeForCreation): Observable<Recipe> {
     const url: string = '/api/classes/Recipe';
-    const recipeJSON: string = JSON.stringify(recipeInfo);
+
+    const recipeWithACL = {
+      ...recipeInfo,
+      ACL: {
+        "3KmCvT7Zsb": {
+          "read": true,
+          "write": true
+        },
+        "*": {
+          "read": true
+        }
+      }
+    };
+
+    const recipeJSON: string = JSON.stringify(recipeWithACL);
     const options = {
       headers: {
         'Content-Type': 'application/json'

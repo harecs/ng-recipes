@@ -1,4 +1,4 @@
-export interface recipeForCreation {
+export interface RecipeForCreation {
     "title": string;
     "ingredients": string;
     "serves": number;

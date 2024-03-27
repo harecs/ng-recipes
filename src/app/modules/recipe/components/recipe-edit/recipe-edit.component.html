@@ -1,4 +1,6 @@
-<div class="center">
+<app-loader *ngIf="!recipe.title"></app-loader>
+
+<div *ngIf="recipe.title" class="center">
     <div class="w3-container w3-third w3-margin-top w3-padding-64">
         <div class="w3-container w3-theme-dark w3-center">
             <h2>Edit Recipe</h2>

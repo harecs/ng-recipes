@@ -1,1 +1,27 @@
-<p>profile works!</p>
+<div class="w3-container" style="padding:128px 16px" id="team">
+    <h1 class="w3-center">PROFILE</h1>
+    <app-loader *ngIf="!user"></app-loader>
+    <ng-container *ngIf="user">
+        <h3 class="w3-center">Username: {{user.username}}</h3>
+        <h3 class="w3-center">User since: {{user.createdAt | date}}</h3>
+    </ng-container>
+    <hr>
+
+    <h3 class="w3-center">Created Recipes</h3>
+    <app-loader *ngIf="!recipes"></app-loader>
+    <div *ngIf="recipes" class="w3-row-padding" style="margin-top:64px">
+        <div *ngFor="let recipe of recipes" class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-card">
+                <img src="{{recipe.imageUrl}}" alt="{{recipe.title}}" style="width:100%">
+                <div class="w3-container">
+                    <h3>{{recipe.title}}</h3>
+                    <p>
+                        <button [routerLink]="recipe.objectId" class="w3-button w3-light-grey w3-block">View
+                            Recipe</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

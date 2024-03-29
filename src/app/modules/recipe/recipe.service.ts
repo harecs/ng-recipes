@@ -25,6 +25,10 @@ export class RecipeService {
     return this.http.get<Recipe>(`/api/classes/Recipe/${id}`);
   }
 
+  getRecipesByUser(userId: string): Observable<RecipesResults> {
+    return this.http.get<RecipesResults>(`/api/classes/Recipe?where={"ownerId":"${userId}"}`);
+  }
+
   addRecipe(recipeInfo: RecipeForCreation): Observable<Recipe> {
     const url: string = '/api/classes/Recipe';
 

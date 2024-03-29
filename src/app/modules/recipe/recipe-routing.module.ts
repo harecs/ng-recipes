@@ -6,6 +6,7 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipeAddComponent } from './components/recipe-add/recipe-add.component';
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
+// import { OwnerActivate } from 'src/app/guards/owner.activate';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', component: RecipesComponent },
             { path: 'add', component: RecipeAddComponent, canActivate: [AuthActivate] },
-            { path: ':id/edit', component: RecipeEditComponent },
+            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthActivate,] }, // add owner
             { path: ':id', component: RecipeDetailsComponent }
         ]
     }

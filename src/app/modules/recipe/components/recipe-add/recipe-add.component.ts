@@ -16,8 +16,15 @@ export class RecipeAddComponent {
   constructor(private recipeService: RecipeService, private userService: UserService, private router: Router) { }
 
   addRecipe(form: NgForm) {
+    const formValue = { ...form.value };
+
+    if (formValue.serves == '') {
+      formValue.serves = 1;
+    }
+
     const ownerId: string = this.userService.user?.objectId || '';
-    const recipeInfo: RecipeForCreation = { ...form.value, ownerId };
+
+    const recipeInfo: RecipeForCreation = { ...formValue, ownerId };
 
     this.recipeService.addRecipe(recipeInfo)
       .subscribe(recipe => {

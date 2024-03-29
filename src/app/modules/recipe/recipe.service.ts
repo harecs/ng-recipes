@@ -44,22 +44,18 @@ export class RecipeService {
       ]
     ]
 
-    console.log();
-
-
     const recipeWithACL = {
       ...recipeInfo,
       ACL: Object.fromEntries(aclEntries)
     }
 
-
-    // Object.defineProperty(recipeWithACL)
-
     const recipeJSON: string = JSON.stringify(recipeWithACL);
 
+    const sessionToken: string = localStorage.getItem('token') || '';
     const options = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Parse-Session-Token': sessionToken
       }
     }
 
@@ -71,12 +67,57 @@ export class RecipeService {
 
     const recipeJSON: string = JSON.stringify(recipeInfo);
 
+    // const aclEntries = [
+    //   [
+    //     recipeInfo.ownerId,
+    //     {
+    //       "read": true,
+    //       "write": true
+    //     }
+    //   ],
+    //   [
+    //     "*",
+    //     {
+    //       "read": true
+    //     }
+    //   ]
+    // ]
+
+    // console.log(aclEntries);
+
+
+    // const recipeWithACL = {
+    //   ...recipeInfo,
+    //   ACL: Object.fromEntries(aclEntries)
+    // }
+
+
+    // console.log(recipeWithACL);
+
+    // const recipeJSON: string = JSON.stringify(recipeWithACL);
+
+    const sessionToken: string = localStorage.getItem('token') || '';
     const options = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Parse-Session-Token': sessionToken
       }
     }
 
     return this.http.put<Recipe>(url, recipeJSON, options);
+  }
+
+  deleteRecipe(id: string) {
+    const url: string = `/api/classes/Recipe/${id}`;
+
+    const sessionToken: string = localStorage.getItem('token') || '';
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Parse-Session-Token': sessionToken
+      }
+    }
+
+    return this.http.delete<string>(url, options);
   }
 }

@@ -16,21 +16,16 @@ export class RecipeEditComponent implements OnInit {
   private recipe$: Observable<Recipe> | undefined;
   private id: string = '';
   recipe: Recipe = {} as Recipe;
-  
-
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private userService: UserService, private router: Router) { }
   
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
-    console.log(this.id);
-
     this.recipe$ = this.recipeService.getRecipe(this.id);
+    
     this.recipe$.subscribe(data => {
-      this.recipe = data;
-      console.log(this.recipe);
-      
+      this.recipe = data;      
     });
   }
 
@@ -39,9 +34,13 @@ export class RecipeEditComponent implements OnInit {
     const recipeInfo: RecipeForCreation = { ...form.value, ownerId };
 
     this.recipeService.editRecipe(this.id, recipeInfo)
-      .subscribe(recipe => {
-        this.router.navigate([`/recipes/${this.id}`]);
-      });
+    .subscribe({
+      next: () => this.router.navigate([`/recipes/${this.id}`]),
+      error: (err) => console.log(err)      
+    })
+      // .subscribe(recipe => {
+      //   this.router.navigate([`/recipes/${this.id}`]);
+      // });
   }
 
 

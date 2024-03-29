@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthActivate } from 'src/app/guards/auth.activate';
 import { GuestActivate } from 'src/app/guards/guest.activate';
+import { ProfileComponent } from './components/profile/profile.component';
 // import { AregisterComponent } from './components/aregister/aregister.component';
 
 
@@ -23,6 +24,11 @@ const routes: Routes = [
     {
         path: 'logout',
         component: LogoutComponent,
+        canActivate: [AuthActivate]
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
         canActivate: [AuthActivate]
     }
 ];

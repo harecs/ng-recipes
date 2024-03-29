@@ -7,12 +7,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { UserRoutingModule } from './user-routing.module';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -9,20 +9,23 @@
                 RECIPES</a>
 
             <ng-container *ngIf="!isLogged">
-                <a routerLink="/auth/login" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-in"></i>
+                <a routerLink="/auth/login" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-sign-in"></i>
                     LOGIN</a>
-                <a routerLink="/auth/register" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-user"></i>
+                <a routerLink="/auth/register" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-user"></i>
                     REGISTER</a>
             </ng-container>
 
             <ng-container *ngIf="isLogged">
-                <a routerLink="/bookmarks" class="w3-bar-item w3-button w3-hover-theme-dark"><i
-                        class="fa fa-bookmark"></i>
-                    BOOKMARKS</a>
                 <a routerLink="/recipes/add" class="w3-bar-item w3-button w3-hover-theme-dark"><i
                         class="fa fa-cutlery"></i> ADD
                     RECIPE</a>
-                <a routerLink="/auth/logout" class="w3-bar-item w3-button w3-hover-theme-dark"><i class="fa fa-sign-out"></i>
+                <a routerLink="/auth/profile" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-bookmark"></i>
+                    PROFILE</a>
+                <a routerLink="/auth/logout" class="w3-bar-item w3-button w3-hover-theme-dark"><i
+                        class="fa fa-sign-out"></i>
                     LOGOUT</a>
             </ng-container>
 
@@ -37,10 +40,20 @@
 
 <nav class="w3-sidebar w3-bar-block w3-theme w3-card w3-animate-left w3-hide-medium w3-hide-large"
     [style.display]="isSidebarShowed ? 'block' : 'none'" id="mySidebar">
+
     <a (click)="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16 w3-hover-theme-dark">Close ×</a>
-    <a (click)="w3_close()" routerLink="/about" class="w3-bar-item w3-button w3-hover-theme-dark">ABOUT</a>
-    <a (click)="w3_close()" routerLink="/team" class="w3-bar-item w3-button w3-hover-theme-dark">TEAM</a>
-    <a (click)="w3_close()" routerLink="/work" class="w3-bar-item w3-button w3-hover-theme-dark">WORK</a>
-    <a (click)="w3_close()" routerLink="/pricing" class="w3-bar-item w3-button w3-hover-theme-dark">PRICING</a>
-    <a (click)="w3_close()" routerLink="/contact" class="w3-bar-item w3-button w3-hover-theme-dark">CONTACT</a>
+    <a (click)="w3_close()" routerLink="/recipes" class="w3-bar-item w3-button w3-hover-theme-dark">RECIPES</a>
+
+    <ng-container *ngIf="!isLogged">
+        <a (click)="w3_close()" routerLink="/auth/login" class="w3-bar-item w3-button w3-hover-theme-dark">LOGIN</a>
+        <a (click)="w3_close()" routerLink="/auth/register"
+            class="w3-bar-item w3-button w3-hover-theme-dark">REGISTER</a>
+    </ng-container>
+
+    <ng-container *ngIf="isLogged">
+        <a (click)="w3_close()" routerLink="/recipes/add" class="w3-bar-item w3-button w3-hover-theme-dark">ADD
+            RECIPE</a>
+        <a (click)="w3_close()" routerLink="/auth/profile" class="w3-bar-item w3-button w3-hover-theme-dark">PROFILE</a>
+        <a (click)="w3_close()" routerLink="/auth/logout" class="w3-bar-item w3-button w3-hover-theme-dark">LOGOUT</a>
+    </ng-container>
 </nav>

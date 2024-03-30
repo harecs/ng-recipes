@@ -11,6 +11,7 @@ import { RecipeService } from './modules/recipe/recipe.service';
 import { UserRoutingModule } from './modules/user/user-routing.module';
 import { appHttpInterceptorProvider } from './app-http.interceptor';
 import { RecipeRoutingModule } from './modules/recipe/recipe-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RecipeRoutingModule } from './modules/recipe/recipe-routing.module';
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule,
     HttpClientModule,
     HomeModule,
     RecipeModule,

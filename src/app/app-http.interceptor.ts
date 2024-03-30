@@ -6,14 +6,15 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { ErrorService } from './shared/error.service';
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private errorService: ErrorService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {    
     if (request.url.startsWith('/api')) {
@@ -29,7 +30,13 @@ export class AppHttpInterceptor implements HttpInterceptor {
     //   'X-Parse-REST-API-Key': environment.REST_API_KEY,
     // }
 
-    return next.handle(request);
+    return next.handle(request)
+      .pipe(
+        catchError((err) => {
+          this.errorService.setError(err);
+          return [err]
+        })
+      );
   }
 }
 

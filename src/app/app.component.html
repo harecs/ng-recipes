@@ -1,4 +1,5 @@
 <app-authenticate>
     <app-navigation></app-navigation>
     <router-outlet></router-outlet>
+    <app-error-footer *ngIf="hasError"></app-error-footer>
 </app-authenticate>

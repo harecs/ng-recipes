@@ -5,6 +5,7 @@ import { HomeComponent } from './modules/home/home/home.component';
 import { RecipesComponent } from './modules/recipe/components/recipes/recipes.component';
 import { RecipeDetailsComponent } from './modules/recipe/components/recipe-details/recipe-details.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { ErrorFooterComponent } from './shared/components/error-footer/error-footer.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'error',
+    component: ErrorFooterComponent
   },
   {
     path: '**',

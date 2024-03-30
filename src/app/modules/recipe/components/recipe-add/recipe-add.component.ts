@@ -22,6 +22,10 @@ export class RecipeAddComponent {
       formValue.serves = 1;
     }
 
+    if (formValue.imageUrl === '') {
+      formValue.imageUrl = undefined;
+    }
+
     const ownerId: string = this.userService.user?.objectId || '';
 
     const recipeInfo: RecipeForCreation = { ...formValue, ownerId };

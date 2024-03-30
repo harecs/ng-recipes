@@ -16,12 +16,15 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe | undefined;
   ingredients: string[] = [];
   steps: string[] = [];
+  token: string | null;
   isOwner: boolean = false;
 
   subscription = undefined;
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private userService: UserService,
-    private router: Router) { }
+    private router: Router) {
+    this.token = localStorage.getItem('token');
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -32,14 +35,12 @@ export class RecipeDetailsComponent implements OnInit {
       this.ingredients = data.ingredients.split('\n');
       this.steps = data.method.split('\n');
 
-      const token: string | null = localStorage.getItem('token');
-
-      if (!token) {
+      if (!this.token) {
         this.isOwner = false;
       }
 
-      
-      if (token && this.userService.user?.objectId == data.ownerId.toString()) {
+
+      if (this.token && this.userService.user?.objectId == data.ownerId.toString()) {
         this.isOwner = true;
       }
     });

@@ -27,7 +27,6 @@ export class RecipeAddComponent {
     }
 
     const ownerId: string = this.userService.user?.objectId || '';
-
     const recipeInfo: RecipeForCreation = { ...formValue, ownerId };
 
     this.recipeService.addRecipe(recipeInfo)

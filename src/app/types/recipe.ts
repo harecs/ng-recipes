@@ -7,7 +7,8 @@ export interface Recipe {
     "serves": string;
     "method": string;
     "imageUrl": string;
-    "ownerId": OwnerId;
+    // "ownerId": OwnerId;
+    "ownerId": string;
     "createdAt": string;
     "updatedAt": string;
 }

@@ -30,6 +30,11 @@ export class RecipeEditComponent implements OnInit {
       }
 
       this.recipe = data;
+      // console.log(data);
+
+      if (data.ownerId !== this.userService.user?.objectId) {
+        this.router.navigate([`/recipes/${data.objectId}`]);
+      }
     });
   }
 

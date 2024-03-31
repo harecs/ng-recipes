@@ -15,6 +15,6 @@ export class ErrorService {
 
     setTimeout(() => {
       this.apiError$$.next(null);
-    }, 6000)
+    }, 5000);
   }
 }

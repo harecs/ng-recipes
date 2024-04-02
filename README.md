@@ -73,3 +73,65 @@ ng serve
 ![App Screenshot](https://i.ibb.co/WxpMTnq/Screenshot-2024-04-02-at-20-26-20.png)
 
 ![App Screenshot](https://i.ibb.co/v1Nk8dP/Screenshot-2024-04-02-at-20-37-22.png)
+## Project Architecture
+
+
+
+
+```
+∇ app
+    ∇ core              
+        ∇ component-a
+            component-a.component.html|css|ts
+        ∇ component-b
+            component-b.component.html|css|ts
+    ∇ guards              
+        guard-a.activate.ts
+        guard-b.activate.ts
+    ∇ modules
+         ∇ feature-a
+              ∇ components
+                  ∇ component-a
+                      component-a.component.html|css|ts
+                  ∇ component-b
+                      component-b.component.html|css|ts
+              service-a.service.ts
+              feature-a-routing.module.ts
+              feature-a.module.ts
+          ∇ feature-b
+              ∇ components
+                  ∇ component-a
+                      component-a.component.html|css|ts
+                  ∇ component-b
+                      component-b.component.html|css|ts
+              service-b.service.ts
+              feature-b-routing.module.ts
+              feature-b.module.ts
+    ∇ shared
+         ∇ components
+              ∇ shared-component-a
+                   shared-component-a.component.html|css|ts
+              ∇ shared-component-b
+                   shared-component-b.component.html|css|ts
+         ∇ utils
+              shared-util.ts
+         ∇ validators
+              validator.directive.ts
+         shared.module.ts
+    ∇ types
+        type-a.ts
+        type-b.ts
+  app-http.interceptor.ts
+  app-routing.module.ts
+  app.component.css
+  app.component.html
+  app.component.ts
+  app.module.ts
+∇ environments
+    environment.development.ts
+    environment.ts
+favicon.ico
+index.html
+main.ts
+styles.css
+```

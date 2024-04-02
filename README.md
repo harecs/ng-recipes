@@ -5,6 +5,8 @@ My web app for the SoftUni Project Defense (Angular - February 2024)
 
 It is a website about recipes. Guests can view the recipes and view the details for a specific recipe.
 Logged users can explore all the recipes and can create recipes, which they can edit and delete.
+Also logged users can view their profile and all the recipes that they have created.
+
 ## Run Locally
 
 - Clone the project

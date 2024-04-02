@@ -13,9 +13,6 @@ export class AuthenticateComponent implements OnInit {
 
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('token');
-    
-    console.log(token);
-    
 
     if (token) {
       this.userService.getUser(token)

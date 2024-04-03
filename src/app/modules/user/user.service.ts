@@ -11,9 +11,6 @@ import { RegisteredUser } from 'src/app/types/registeredUser';
 export class UserService implements OnDestroy {
   private user$$ = new BehaviorSubject<LoggedUser | undefined>(undefined);
   public user$ = this.user$$.asObservable();
-  
-  // For canActivate route guards
-  // public isAuth$$ = new BehaviorSubject<boolean>(false);
 
   user: LoggedUser | undefined;
 
@@ -48,13 +45,12 @@ export class UserService implements OnDestroy {
     const options = {
       headers: {
         'X-Parse-Revocable-Session': '1'
-      }, // maybe withCredentials: true ???
+      },
     };
 
     return this.http
       .get<LoggedUser>(url, options)
       .pipe(tap((user) => this.user$$?.next(user)))
-      // .pipe(tap(() => this.isAuth$$.next(true)))
       .pipe(tap((userData) => localStorage.setItem('token', userData.sessionToken)));
   }
 
@@ -66,35 +62,31 @@ export class UserService implements OnDestroy {
 
     const options = {
       headers: {
-        'X-Parse-Session-Token': sessionToken //.subscribe((user) => user?.sessionToken)
+        'X-Parse-Session-Token': sessionToken
       }
     }
 
     return this.http
       .post<object>(url, options)
       .pipe(tap(() => this.user$$.next(undefined)))
-      // .pipe(tap(() => this.isAuth$$.next(false)))
       .pipe(tap(() => localStorage.removeItem('token')))
   }
 
   getUser(token: string) {
     const url: string = '/api/users/me';
-    // const token: string = localStorage.getItem('token') || '';
 
     const options = {
       headers: {
-        'X-Parse-Session-Token': token  //.subscribe((user) => user?.sessionToken)
+        'X-Parse-Session-Token': token
       }
     }
 
     return this.http
       .get<LoggedUser>(url, options)
       .pipe(tap((user) => this.user$$?.next(user)))
-      // .pipe(tap(() => this.isAuth$$.next(true)));
   }
 
   ngOnDestroy(): void {
-    // this.user$$.unsubscribe();
     this.subscription.unsubscribe();
   }
 }

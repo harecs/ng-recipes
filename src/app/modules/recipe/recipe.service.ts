@@ -16,12 +16,10 @@ export class RecipeService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getAllRecipes(): Observable<RecipesResults> {
-    // return this.http.get<RecipesResults>(this.apiUrl, this.options);
     return this.http.get<RecipesResults>('/api/classes/Recipe');
   }
 
   getRecipe(id: string): Observable<Recipe> {
-    // return this.http.get<Recipe>(`${this.apiUrl}/${id}`, this.options);
     return this.http.get<Recipe>(`/api/classes/Recipe/${id}`);
   }
 

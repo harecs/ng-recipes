@@ -29,7 +29,6 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule
   ],
   providers: [
-    // RecipeService,
     appHttpInterceptorProvider
   ],
   bootstrap: [AppComponent]

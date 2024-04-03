@@ -31,13 +31,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
-// {
-//   path: 'recipes',
-//   children: [
-//     { path: '', pathMatch: 'full', component: RecipesComponent },
-//     { path: ':id', component: RecipeDetailsComponent }
-//   ]
-// },

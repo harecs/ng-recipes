@@ -25,11 +25,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
       });
     }
 
-    // {
-    //   'X-Parse-Application-Id': environment.APPLICATION_ID,
-    //   'X-Parse-REST-API-Key': environment.REST_API_KEY,
-    // }
-
     return next.handle(request)
       .pipe(
         catchError((err) => {

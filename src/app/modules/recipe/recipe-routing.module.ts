@@ -15,7 +15,7 @@ const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', component: RecipesComponent },
             { path: 'add', component: RecipeAddComponent, canActivate: [AuthActivate] },
-            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthActivate,] }, // add owner
+            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthActivate,] },
             { path: ':id', component: RecipeDetailsComponent }
         ]
     }

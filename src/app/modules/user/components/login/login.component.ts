@@ -18,7 +18,6 @@ export class LoginComponent {
 
     this.userService.loginUser(form.value.username, form.value.password)
       .subscribe((userData) => {
-        // localStorage.setItem('token', userData.sessionToken);
         this.router.navigate(['/recipes'])
       });
   }
